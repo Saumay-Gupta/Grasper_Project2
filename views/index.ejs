@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Test Analyser</h1>
+    <div>
+        <form action="/register" method="post">
+            <input type="text" name="analyse" placeholder="Enter Your test">
+            <input type="submit" value="Analyse">
+            <input type="radio" id="html" name="marks" value="segment">
+            <label for="html">Segment</label><br>
+            <input type="radio" id="css" name="marks" value="keyphrase">
+            <label for="css">Key Phrase</label><br>
+            <input type="radio" id="javascript" name="marks" value="entity">
+            <label for="javascript">Entities</label>
+        </form>
+    </div>
+    <div>
+        <p>Segment Analysis:<%= segment %>
+        </p>
+        <%= result ? result : '' %>
+    </div>
+</body>
+
+</html>
