@@ -3,28 +3,76 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Grasper</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <!-- Font Awesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <h1>Test Analyser</h1>
-    <div>
-        <form action="/register" method="post">
-            <input type="text" name="analyse" placeholder="Enter Your test">
-            <input type="submit" value="Analyse">
-            <input type="radio" id="html" name="marks" value="segment">
-            <label for="html">Segment</label><br>
-            <input type="radio" id="css" name="marks" value="keyphrase">
-            <label for="css">Key Phrase</label><br>
-            <input type="radio" id="javascript" name="marks" value="entity">
-            <label for="javascript">Entities</label>
-        </form>
-    </div>
-    <div>
-        <p>Segment Analysis:<%= segment %>
-        </p>
-        <%= result ? result : '' %>
-    </div>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">GRASPER</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Header Section -->
+    <main>
+        <section class="header">
+            <h1 class="title">Grasper</h1>
+            <p class="subtitle">TEXT ANALYZER</p>
+            <form action="/analyse" method="post">
+                <p class="flash">
+                    <%= flash %>
+                </p>
+                <div class="message-box">
+                    <input type="text" name="input" class="message-input" placeholder="Enter your text here..." value="<%= total %>">
+                    <input type="submit" id="analyzeButton" class="send-btn" value="➤">
+                </div>
+                <div class="analysis-options">
+                    <input type="checkbox" name="marks" value="segment">
+                    <label for="SegmentAnalysis">Segment Analysis</label>
+                    <input type="checkbox" name="marks" value="keyphrase">
+                    <label for="KeyPhrase">Key Phrase Extraction</label>
+                    <input type="checkbox" name="marks" value="entity">
+                    <label for="NamedEntity">Named Entity Recognition</label>
+                </div>
+            </form>
+            <p class="flash">
+                <%= select %>
+            </p>
+            <div class="loading-spinner hidden">
+                <p><b>Segment Analysis:</b><%= segment %></p>
+                <p><b>Key Phrase Extraction:</b>
+                <% if (key && key.length > 0) { %>
+                    <ul style="list-style-type:none;">
+                        <% key.split(",").forEach((item) => { %>
+                            <li><%= item.trim() %></li>
+                        <% }) %>
+                    </ul>
+                <% } %> 
+                </p>
+                    <p><b>Named Entity Recognition:</b>
+                        <ul style="list-style-type:none;">
+                            <% if (Array.isArray(entity)) { %>
+                                <% entity.forEach((item) => { %>
+                                    <li>
+                                        <strong><%= item[0] %></strong>.<%= item[1][0] %> - <%= item[1][1] %>
+                                    </li>
+                                <% }) %>
+                            <% } %>
+                        </ul>
+                    </p>
+            </div>
+            <div class="error-message hidden"></div>
+            <p class="note">Grasper may make mistakes. Consider checking important information.</p>
+        </section>
+    </main>
 </body>
 
 </html>
