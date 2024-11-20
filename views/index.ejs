@@ -36,7 +36,7 @@
                 </div>
                 <div class="analysis-options">
                     <input type="checkbox" name="marks" value="segment">
-                    <label for="SegmentAnalysis">Segment Analysis</label>
+                    <label for="SegmentAnalysis">Sentiment Analysis</label>
                     <input type="checkbox" name="marks" value="keyphrase">
                     <label for="KeyPhrase">Key Phrase Extraction</label>
                     <input type="checkbox" name="marks" value="entity">
@@ -47,7 +47,7 @@
                 <%= select %>
             </p>
             <div class="loading-spinner hidden">
-                <p><b>Segment Analysis:</b><%= segment %></p>
+                <p><b>Sentiment Analysis:</b><%= segment %></p>
                 <p><b>Key Phrase Extraction:</b>
                 <% if (key && key.length > 0) { %>
                     <ul style="list-style-type:none;">
